@@ -43,10 +43,7 @@ export default function Home() {
   // handle submit funtion by the funtion
   const habdlerSubmit = (event) => {
     event.preventDefault();
-    console.log(registervalue.name)
-    console.log(registervalue.email)
-    console.log(registervalue.password)
-    // ResigerApi()
+    ResigerApi()
   }
 
   return (
