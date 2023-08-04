@@ -1,5 +1,50 @@
+import React, { useState } from "react";
+import axios from "axios";
+
 
 export default function Home() {
+
+  // store input value with the state
+  const [registervalue, setRegistervalue] = useState({
+    name : '',
+    email : '',
+    password : ''
+  });
+
+  // i am handle api with axios
+
+  const ResigerApi = async () => {
+    var formData = new FormData();
+    formData.append('name', registervalue.name);
+    formData.append('email', registervalue.email);
+    formData.append('password', registervalue.password);
+
+    axios({
+      method: "post",
+      url: "https://sndigitech.in/cbrs/api/register",
+      data: formData,
+      headers: {
+        'Content-Type':  `multipart/form-data;`,
+      }
+    }).then((response)=>{
+      console.log(response);
+    }).catch((response)=>{
+      console.log(response);
+    })
+
+  }
+
+  // handle submit funtion by the funtion
+  const habdlerSubmit = (event) => {
+    event.preventDefault();
+    ResigerApi()
+
+  }
+  // handle input value by the funtion
+  const handlerInput = (event) => {
+    setRegistervalue({...registervalue, [event.target.name]: event.target.value})
+  }
+
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -9,18 +54,18 @@ export default function Home() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" action="#" onSubmit={habdlerSubmit} method="POST">
                 <div>
                   <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
-                  <input type="name" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your name" />
+                  <input type="name" onChange={handlerInput} name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your name" />
                 </div>
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                  <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" />
+                  <input type="email" onChange={handlerInput} name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" />
                 </div>
                 <div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                  <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
+                  <input type="password" onClick={handlerInput} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
