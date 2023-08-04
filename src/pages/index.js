@@ -43,7 +43,8 @@ export default function Home() {
   // handle submit funtion by the funtion
   const habdlerSubmit = (event) => {
     event.preventDefault();
-    ResigerApi()
+    ResigerApi();
+    
   }
 
   return (
