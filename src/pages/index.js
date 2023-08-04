@@ -11,6 +11,7 @@ export default function Home() {
     password : ''
   });
 
+
   // i am handle api with axios
 
   const ResigerApi = async () => {
@@ -34,15 +35,18 @@ export default function Home() {
 
   }
 
-  // handle submit funtion by the funtion
-  const habdlerSubmit = (event) => {
-    event.preventDefault();
-    ResigerApi()
-
-  }
   // handle input value by the funtion
   const handlerInput = (event) => {
     setRegistervalue({...registervalue, [event.target.name]: event.target.value})
+  }
+
+  // handle submit funtion by the funtion
+  const habdlerSubmit = (event) => {
+    event.preventDefault();
+    console.log(registervalue.name)
+    console.log(registervalue.email)
+    console.log(registervalue.password)
+    // ResigerApi()
   }
 
   return (
@@ -61,11 +65,11 @@ export default function Home() {
                 </div>
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                  <input type="email" onChange={handlerInput} name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" />
+                  <input type="email" onChange={handlerInput} name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" autoComplete="off" />
                 </div>
                 <div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                  <input type="password" onClick={handlerInput} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
+                  <input type="password" onChange={handlerInput} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" autoComplete="off"  />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
